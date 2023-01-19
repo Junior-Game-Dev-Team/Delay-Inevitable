@@ -73,3 +73,4 @@ crashlytics-build.properties
 
 .vsconfig
 /[Aa]ssets/_quarantine/
+Assets/_quarantine.meta
