@@ -11,4 +11,4 @@
 - Here, the player can make the choice to fight and defeat the demon one last time, or try to make peace with the demon and release it from this world into the next – think Undertale mechanics, the ability for the player to choose to fight or show mercy.
 
 ## Concept Art
-![alt text](https://github.com/Junior-Game-Dev-Team/Delay-Inevitable/blob/5-readme/Documentation/Concept/Images/concept_doodles.png)
+![alt text](https://github.com/Junior-Game-Dev-Team/Delay-Inevitable/blob/main/Documentation/Concept/Images/concept_doodles.png)
