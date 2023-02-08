@@ -104,15 +104,16 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 1
     - _EnvironmentReflections: 1
-    - _FresnelPower: 2.53
+    - _FadeValue: 0.0001151273
+    - _FresnelPower: 2
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 0
-    - _NoiseAmount: 0.72
-    - _NoisePower: 3.95
-    - _NoiseScale: 8.01
+    - _NoiseAmount: 1
+    - _NoisePower: 1
+    - _NoiseScale: 5
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _QueueControl: 0
@@ -130,10 +131,10 @@ Material:
     - _ZWriteControl: 0
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 1, g: 0.51073426, b: 0.088679194, a: 1}
+    - _Color: {r: 1, g: 0.5, b: 0.08, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _NoiseSpeed: {r: 0, g: 30, b: 0, a: 0}
-    - _NoiseTiling: {r: 0.5, g: 16.2, b: 0, a: 0}
+    - _NoiseSpeed: {r: 0, g: 10, b: 0, a: 0}
+    - _NoiseTiling: {r: 1, g: 50, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &4167960811449631218
