@@ -1,34 +1,46 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class HighlightExampleFader : MonoBehaviour
 {
-    public HighlightProfile hp;
-    public Material highlightMat;
+    [Header("Data Storage")]
+    [SerializeField] private HighlightProfile hp;
+
+    [Header("Material")]
+    [SerializeField] private Material highlightMat;
+
+    [Header("Highlight Configuration")]
+    [SerializeField] private int highlightDelay = 10;
 
     private void Start()
     {
         highlightMat.SetFloat("_FadeValue", 0f);
         highlightMat.color = hp.highlightColor;
-        StartCoroutine(FadeHighlight(10));
+        StartCoroutine(FadeHighlight(highlightDelay));
     }
 
-    IEnumerator FadeHighlight(int startDelay)
+    private IEnumerator FadeHighlight(int startDelay)
     {
+        // Sets a delay before the highligt appears
         for (float i = 0; i < startDelay; i += Time.deltaTime)
         {
             yield return null;
         }
-        for (float i = 0; i < 1; i+=Time.deltaTime / hp.fadeInSeconds)
+
+        // How long it takes for the highligt to fade in
+        for (float i = 0; i < 1; i += Time.deltaTime / hp.fadeInSeconds)
         {
             highlightMat.SetFloat("_FadeValue", i);
             yield return null;
         }
+
+        // The duration of the highlight
         for (float i = 0; i < hp.staySeconds; i += Time.deltaTime)
         {
             yield return null;
         }
+
+        // How long it takes for the highlight to fade out
         for (float i = 1; i > 0; i -= Time.deltaTime / hp.fadeOutSeconds)
         {
             highlightMat.SetFloat("_FadeValue", i);
