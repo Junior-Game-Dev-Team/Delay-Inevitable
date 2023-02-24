@@ -1,18 +1,24 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.XR;
 
-[RequireComponent(typeof(PlayerInput),typeof(Rigidbody))]
+[RequireComponent(typeof(PlayerInput),typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float speed = 5f;
 
-    private Vector3 moveVal;
-    private Vector3 movement;
-    private Rigidbody rb;
+    private CharacterController controller;
+    private Vector3 playerVelocity;
+    private Vector2 moveVal;
+    private bool groundedPlayer;
+    private Transform cameraTransform;
+
+    private float gravityValue = -9.81f;
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        cameraTransform = Camera.main.transform;
+        controller = GetComponent<CharacterController>();
     }
 
     private void Update()
@@ -20,19 +26,29 @@ public class PlayerMovement : MonoBehaviour
         Movement();
     }
 
-    // Reads the input value from the input device(s)
-    public void OnMovement(InputValue value)
+    private void OnMovement(InputValue value)
     {
-        // Gets a vector 2 value
         moveVal = value.Get<Vector2>();
-
-        // Forward, sideway movement
-        movement = new Vector3(moveVal.x, 0, moveVal.y);
     }
 
     private void Movement()
     {
-        // Make the player move
-        transform.Translate(movement * speed * Time.deltaTime);
+        groundedPlayer = controller.isGrounded;
+
+        if (groundedPlayer && playerVelocity.y < 0)
+            playerVelocity.y = 0f;
+
+        Vector3 move = new Vector3(moveVal.x, 0, moveVal.y);
+
+        // Take into consideration of the camera direction
+        move = move.x * cameraTransform.right.normalized + move.z * cameraTransform.forward.normalized;
+        move.y = 0f;
+
+        controller.Move(move * Time.deltaTime * speed);
+
+        // Character Controller ignores the gravity
+        // So have to code it manually
+        playerVelocity.y += gravityValue * Time.deltaTime;
+        controller.Move(playerVelocity * Time.deltaTime);
     }
 }
