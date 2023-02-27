@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.XR;
 
 [RequireComponent(typeof(PlayerInput),typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
@@ -33,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Movement()
     {
+        // Check if the player is on the ground
         groundedPlayer = controller.isGrounded;
 
         if (groundedPlayer && playerVelocity.y < 0)
