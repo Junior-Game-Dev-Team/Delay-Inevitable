@@ -1,54 +1,38 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(PlayerInput),typeof(CharacterController))]
+[RequireComponent(typeof(PlayerInput),typeof(Rigidbody))]
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float speed = 5f;
 
-    private CharacterController controller;
-    private Vector3 playerVelocity;
-    private Vector2 moveVal;
-    private bool groundedPlayer;
-    private Transform cameraTransform;
+    private Rigidbody rb;
+    private Transform cam;
 
-    private float gravityValue = -9.81f;
+    private Vector2 moveInput;
+    private Vector3 moveDirection;
 
-    private void Start()
+    private void Awake()
     {
-        cameraTransform = Camera.main.transform;
-        controller = GetComponent<CharacterController>();
+        cam = Camera.main.transform;
+        rb = GetComponent<Rigidbody>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         Movement();
     }
 
     private void OnMovement(InputValue value)
     {
-        moveVal = value.Get<Vector2>();
+        moveInput = value.Get<Vector2>();
     }
 
     private void Movement()
     {
-        // Check if the player is on the ground
-        groundedPlayer = controller.isGrounded;
+        // Move in the camera direction
+        moveDirection = moveInput.x * cam.right + moveInput.y * cam.forward;
 
-        if (groundedPlayer && playerVelocity.y < 0)
-            playerVelocity.y = 0f;
-
-        Vector3 move = new Vector3(moveVal.x, 0, moveVal.y);
-
-        // Take into consideration of the camera direction
-        move = move.x * cameraTransform.right.normalized + move.z * cameraTransform.forward.normalized;
-        move.y = 0f;
-
-        controller.Move(move * Time.deltaTime * speed);
-
-        // Character Controller ignores the gravity
-        // So have to code it manually
-        playerVelocity.y += gravityValue * Time.deltaTime;
-        controller.Move(playerVelocity * Time.deltaTime);
+        rb.AddForce(moveDirection * speed, ForceMode.Force);
     }
 }
