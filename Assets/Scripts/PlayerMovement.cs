@@ -4,7 +4,8 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(PlayerInput),typeof(Rigidbody))]
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float speed = 5f;
+    [Header("Player Configuration")]
+    [SerializeField] private float speed = 20f;
 
     private Rigidbody rb;
     private Transform cam;
@@ -32,7 +33,6 @@ public class PlayerMovement : MonoBehaviour
     {
         // Move in the camera direction
         moveDirection = moveInput.x * cam.right + moveInput.y * cam.forward;
-
         rb.AddForce(moveDirection * speed, ForceMode.Force);
     }
 }
