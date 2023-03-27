@@ -16,6 +16,7 @@ public class PlayerFootsteps : MonoBehaviour
 
     private void Update()
     {
+        // Play one shot SFX audio when the player is moving
         if (!emitter.IsPlaying() && player.rb.velocity.magnitude > 0.3)
             emitter.Play();
     }
