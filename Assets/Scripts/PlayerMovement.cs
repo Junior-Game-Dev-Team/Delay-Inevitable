@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Player Configuration")]
     [SerializeField] private float speed = 20f;
 
-    private Rigidbody rb;
+    [HideInInspector] public Rigidbody rb;
     private Transform cam;
 
     private Vector2 moveInput;
