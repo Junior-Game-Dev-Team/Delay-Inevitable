@@ -1324,6 +1324,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 524622863}
+  - component: {fileID: 524622865}
+  - component: {fileID: 524622864}
   m_Layer: 0
   m_Name: FootstepAudio
   m_TagString: Untagged
@@ -1346,6 +1348,48 @@ Transform:
   m_Father: {fileID: 543450652415873629}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &524622864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 524622862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6da9e06a30a53b46ad3c6c16b77d40d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &524622865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 524622862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 347416895
+      Data2: 1223030430
+      Data3: 47099559
+      Data4: -643625871
+    Path: event:/Character/Enemy Footsteps
+  Event: 
+  PlayEvent: 1
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &560891511
 GameObject:
   m_ObjectHideFlags: 0
@@ -6241,6 +6285,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
+  rb: {fileID: 0}
 --- !u!54 &3469287838480915963
 Rigidbody:
   m_ObjectHideFlags: 0
