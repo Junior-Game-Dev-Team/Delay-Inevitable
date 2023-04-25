@@ -34,5 +34,8 @@ public class PlayerMovement : MonoBehaviour
         // Move in the camera direction
         moveDirection = moveInput.x * cam.right + moveInput.y * cam.forward;
         rb.AddForce(moveDirection * speed, ForceMode.Force);
+
+        // Rotate the body to look in the direction of the camera
+        transform.rotation = Quaternion.Euler(0, cam.eulerAngles.y, 0);
     }
 }
