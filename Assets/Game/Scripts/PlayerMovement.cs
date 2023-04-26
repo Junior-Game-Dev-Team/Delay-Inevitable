@@ -38,4 +38,10 @@ public class PlayerMovement : MonoBehaviour
         // Rotate the body to look in the direction of the camera
         transform.rotation = Quaternion.Euler(0, cam.eulerAngles.y, 0);
     }
+
+    private void UpdateAnimator()
+    {
+        // TODO
+        // Play running animations when the player is moving
+    }
 }
