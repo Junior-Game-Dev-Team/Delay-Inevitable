@@ -4401,7 +4401,7 @@ GameObject:
   - component: {fileID: 705507995}
   - component: {fileID: 705507994}
   m_Layer: 0
-  m_Name: Directional Light
+  m_Name: FlashLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11260,6 +11260,7 @@ GameObject:
   - component: {fileID: 1428491047}
   - component: {fileID: 1441131571}
   - component: {fileID: 1441131570}
+  - component: {fileID: 1441131572}
   - component: {fileID: 1441131569}
   - component: {fileID: 1433985121}
   m_Layer: 0
@@ -12323,6 +12324,19 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &1441131572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1437952097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4523afda7c9b18f4f85864801828244d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spotlight: {fileID: 705507994}
 --- !u!1001 &1448789043
 PrefabInstance:
   m_ObjectHideFlags: 0
