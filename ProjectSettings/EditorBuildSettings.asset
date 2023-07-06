@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Horror Game/Scenes/Levels/MainMenu.unity
+    guid: 656789551012d6a45b098bb68e4fbfa4
+  - enabled: 1
+    path: Assets/Horror Game/Scenes/Apartment_01.unity
+    guid: 97b638820b7decb43931fadb0ad0da1a
   m_configObjects: {}
