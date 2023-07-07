@@ -13,6 +13,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 moveInput;
     private Vector3 moveDirection;
 
+    private bool canPlayerMove = true;
+
     private void Awake()
     {
         cam = Camera.main.transform;
@@ -21,7 +23,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Movement();
+        if (canPlayerMove)
+            Movement();
     }
 
     private void OnMovement(InputValue value)
@@ -34,5 +37,10 @@ public class PlayerMovement : MonoBehaviour
         // Move in the camera direction
         moveDirection = moveInput.x * cam.right + moveInput.y * cam.forward;
         rb.AddForce(moveDirection * speed, ForceMode.Force);
+    }
+
+    public void CanPlayerMove(bool state) 
+    {
+        canPlayerMove = state;
     }
 }
