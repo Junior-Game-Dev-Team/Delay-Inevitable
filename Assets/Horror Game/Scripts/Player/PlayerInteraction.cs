@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 public class PlayerInteraction : MonoBehaviour
 {
     [SerializeField] private GameEvent gameEvent;
+    [SerializeField] private GameEvent pauseMenuEvent;
 
     [SerializeField] private Canvas pauseMenu;
     private bool isPauseMenu = false;
@@ -19,11 +20,13 @@ public class PlayerInteraction : MonoBehaviour
         {
             // Player movement stop
             gameEvent.RaiseBool(false);
+            pauseMenuEvent.RaiseBool(true);
             pauseMenu.gameObject.SetActive(true);
         }
         else
         {
             gameEvent.RaiseBool(true);
+            pauseMenuEvent.RaiseBool(false);
             pauseMenu.gameObject.SetActive(false);
         }
     }
