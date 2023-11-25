@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.00046195684, g: 0.0006972521, b: 0.0022981912, a: 1}
+  m_IndirectSpecularColor: {r: 0.00046195794, g: 0.0006972533, b: 0.0022981968, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1733,11 +1733,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: 347416895
-      Data2: 1223030430
-      Data3: 47099559
-      Data4: -643625871
-    Path: event:/Character/Enemy Footsteps
+      Data1: -385494015
+      Data2: 1195472629
+      Data3: -2064153176
+      Data4: 1900422219
+    Path: event:/Character/Player Footsteps
   Event: 
   PlayEvent: 1
   StopEvent: 0
@@ -3832,7 +3832,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.1, y: 2.1000066, z: -6.61}
+  m_LocalPosition: {x: 3.263, y: 2.1000066, z: -6.61}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5414,7 +5414,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4946863519273321676, guid: 7a2dbe8cab0606d43b7e3c470009ef9b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.1
+      value: 3.263
       objectReference: {fileID: 0}
     - target: {fileID: 4946863519273321676, guid: 7a2dbe8cab0606d43b7e3c470009ef9b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -7911,7 +7911,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919132148156565735}
   m_LocalRotation: {x: 0.000000021855698, y: 0.000000059604638, z: 2.2204458e-16, w: 1}
-  m_LocalPosition: {x: 4.1, y: 0.00000667572, z: -6.61}
+  m_LocalPosition: {x: 3.263, y: 0.00000667572, z: -6.61}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
