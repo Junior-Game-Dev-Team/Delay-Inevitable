@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -9,18 +10,21 @@ public class Settings : MonoBehaviour
 
     [Header("Visual Settings")]
     [SerializeField] private TMP_Text resolutionText;
+    [SerializeField] private TMP_Text screenModeText;
 
     private List<Resolution> resolutions = new List<Resolution>();
     private string screenWidth;
     private string screenHeight;
 
     private int selectedResolution = 0;
+    private int selectedScreenMode = 0;
 
     private void Start()
     {
-        SetActiveTab(1);
+        //SetActiveTab(1);
 
         GetScreenResolutions();
+        UpdateScreenModeText(Screen.fullScreenMode.ToString());    
     }
 
     public void SetActiveTab(int ID)
@@ -45,7 +49,7 @@ public class Settings : MonoBehaviour
     {
         resolutions.Clear();
 
-        resolutions = Screen.resolutions.ToList();
+        resolutions = Screen.resolutions.Where(x => x.refreshRate == 60).ToList();
         
         selectedResolution = resolutions.FindIndex(0, resolutions.Count, x => x.width == Screen.currentResolution.width && x.height == Screen.currentResolution.height);
 
@@ -95,15 +99,53 @@ public class Settings : MonoBehaviour
         Application.targetFrameRate = framerate;
     }
 
-    public void SetWindowMode(bool isFullScreen)
+    private void SetWindowMode(int Mode)
     {
-        if (isFullScreen)
+        switch(Mode) 
         {
-            Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
+            case 0:
+                Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen;
+                UpdateScreenModeText("Fullscreen");
+                break;
+            case 1:
+                Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
+                UpdateScreenModeText("Borderless");
+                break;
+            case 2:
+                Screen.fullScreenMode = FullScreenMode.Windowed;
+                UpdateScreenModeText("Windowed");
+                break;
+            default:
+                Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen;
+                UpdateScreenModeText("Fullscreen");
+                break;
         }
-        else if(!isFullScreen)
+    }
+
+    private void UpdateScreenModeText(string name)
+    {
+        screenModeText.text = name;
+    }
+
+    public void ScreenModeLeft()
+    {
+        selectedScreenMode--;
+
+        if (selectedScreenMode < 0)
         {
-            Screen.fullScreenMode = FullScreenMode.Windowed;
+            selectedScreenMode = 2;
         }
+        SetWindowMode(selectedScreenMode);
+    }
+
+    public void ScreenModeRight()
+    {
+        selectedScreenMode++;
+
+        if (selectedScreenMode > 2)
+        {
+            selectedScreenMode = 0;
+        }
+        SetWindowMode(selectedScreenMode);
     }
 }
