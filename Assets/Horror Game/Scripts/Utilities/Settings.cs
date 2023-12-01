@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class Settings : MonoBehaviour
 {
@@ -10,18 +11,22 @@ public class Settings : MonoBehaviour
     [SerializeField] private TMP_Text resolutionText;
     [SerializeField] private TMP_Text screenModeText;
     [SerializeField] private TMP_Text frameRateText;
+    [SerializeField] private List<int> frameRates = new List<int>();
 
     private List<Resolution> resolutions = new List<Resolution>();
     private string screenWidth;
     private string screenHeight;
 
-    private int selectedResolution = 0;
-    private int selectedScreenMode = 0;
+    private int resolutionIndex = 0;
+    private int screenModeIndex = 0;
+    private int framerateIndex = 0;
 
     private void Start()
     {
+        frameRateText.text = "60";
         GetScreenResolutions();
-        UpdateScreenModeText(Screen.fullScreenMode.ToString());    
+        UpdateScreenModeText(Screen.fullScreenMode.ToString());
+        Application.targetFrameRate = 60;
     }
 
     private void GetScreenResolutions()
@@ -30,29 +35,29 @@ public class Settings : MonoBehaviour
 
         resolutions = Screen.resolutions.Where(x => x.refreshRate == 60).ToList();
         
-        selectedResolution = resolutions.FindIndex(0, resolutions.Count, x => x.width == Screen.currentResolution.width && x.height == Screen.currentResolution.height);
+        resolutionIndex = resolutions.FindIndex(0, resolutions.Count, x => x.width == Screen.currentResolution.width && x.height == Screen.currentResolution.height);
 
         UpdateResolutionText();
     }
 
     public void ResLeft() 
     {
-        selectedResolution--;
+        resolutionIndex--;
 
-        if (selectedResolution < 0)
+        if (resolutionIndex < 0)
         {
-            selectedResolution = resolutions.Count - 1;
+            resolutionIndex = resolutions.Count - 1;
         }
         ChangeResolution();
     }
 
     public void ResRight()
     {
-        selectedResolution++;
+        resolutionIndex++;
 
-        if (selectedResolution > resolutions.Count - 1)
+        if (resolutionIndex > resolutions.Count - 1)
         {
-            selectedResolution = 0;
+            resolutionIndex = 0;
         }
         ChangeResolution();
     }
@@ -60,22 +65,45 @@ public class Settings : MonoBehaviour
 
     private void ChangeResolution() 
     {
-        Screen.SetResolution(resolutions[selectedResolution].width, resolutions[selectedResolution].height, true);
+        Screen.SetResolution(resolutions[resolutionIndex].width, resolutions[resolutionIndex].height, true);
 
         UpdateResolutionText();
     }
 
     private void UpdateResolutionText()
     {
-        screenWidth = resolutions[selectedResolution].width.ToString();
-        screenHeight = resolutions[selectedResolution].height.ToString();
+        screenWidth = resolutions[resolutionIndex].width.ToString();
+        screenHeight = resolutions[resolutionIndex].height.ToString();
 
         resolutionText.text = screenWidth + "x" + screenHeight;
     }
 
-    public void SetFrameLimit(int framerate) 
+    private void SetFramerateLimit(int framerate) 
     {
-        Application.targetFrameRate = framerate;
+        Application.targetFrameRate = frameRates[framerate];
+        frameRateText.text = Application.targetFrameRate.ToString();
+    }
+
+    public void FramerateLeft() 
+    {
+        framerateIndex--;
+
+        if (framerateIndex < 0) 
+        {
+            framerateIndex = frameRates.Count;
+        }
+        SetFramerateLimit(framerateIndex);
+    }
+
+    public void FramerateRight()
+    {
+        framerateIndex++;
+
+        if (framerateIndex > 3)
+        {
+            framerateIndex = 0;
+        }
+        SetFramerateLimit(framerateIndex);
     }
 
     private void SetWindowMode(int Mode)
@@ -108,23 +136,23 @@ public class Settings : MonoBehaviour
 
     public void ScreenModeLeft()
     {
-        selectedScreenMode--;
+        screenModeIndex--;
 
-        if (selectedScreenMode < 0)
+        if (screenModeIndex < 0)
         {
-            selectedScreenMode = 2;
+            screenModeIndex = 2;
         }
-        SetWindowMode(selectedScreenMode);
+        SetWindowMode(screenModeIndex);
     }
 
     public void ScreenModeRight()
     {
-        selectedScreenMode++;
+        screenModeIndex++;
 
-        if (selectedScreenMode > 2)
+        if (screenModeIndex > 2)
         {
-            selectedScreenMode = 0;
+            screenModeIndex = 0;
         }
-        SetWindowMode(selectedScreenMode);
+        SetWindowMode(screenModeIndex);
     }
 }
