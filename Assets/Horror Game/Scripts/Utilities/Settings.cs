@@ -6,11 +6,10 @@ using UnityEngine;
 
 public class Settings : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> configurations = new List<GameObject>();
-
     [Header("Visual Settings")]
     [SerializeField] private TMP_Text resolutionText;
     [SerializeField] private TMP_Text screenModeText;
+    [SerializeField] private TMP_Text frameRateText;
 
     private List<Resolution> resolutions = new List<Resolution>();
     private string screenWidth;
@@ -21,28 +20,8 @@ public class Settings : MonoBehaviour
 
     private void Start()
     {
-        //SetActiveTab(1);
-
         GetScreenResolutions();
         UpdateScreenModeText(Screen.fullScreenMode.ToString());    
-    }
-
-    public void SetActiveTab(int ID)
-    {
-        // Hover over button
-        // Find the corresponsive tab
-        // Activate the tab
-        // Disable the other tabs
-
-        configurations[ID].SetActive(true);
-
-        for (int i = 0; i < configurations.Count; i++)
-        {
-            if (i != ID)
-            {
-                configurations[i].SetActive(false);
-            }
-        }
     }
 
     private void GetScreenResolutions()
