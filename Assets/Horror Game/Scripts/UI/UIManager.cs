@@ -8,17 +8,16 @@ public class UIManager : MonoBehaviour
 
     public void EnableMenu(string MenuName)
     {
-        foreach (GameObject element in uiElements) 
+        foreach (GameObject UI in uiElements) 
         {
-            element.SetActive(false);
-
-            // Check if menu name matches a name in the list 
-            // and it has the correct tag
-            // This is to prevent activating other game objects.
-            if (element.name == MenuName && element.CompareTag("UI")) 
+            if (UI.name != MenuName)
             {
-                element.SetActive(true);
-                Debug.Log("Working");
+                UI.gameObject.SetActive(false); 
+            }
+
+            if (UI.name == MenuName && UI.CompareTag("UI"))
+            {
+                UI.gameObject.SetActive(true);
             }
         }
     }
