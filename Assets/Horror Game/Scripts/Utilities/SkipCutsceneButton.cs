@@ -23,7 +23,7 @@ public class SkipCutsceneButton : MonoBehaviour
     private InputAction button;
 
     [SerializeField]
-    private float fillAmountSpeed = 0.001f;
+    private float fillAmountSpeed = 0.5f;
 
     [SerializeField]
     private float fillAmountCooldownSpeed = 0.6f;
@@ -52,10 +52,20 @@ public class SkipCutsceneButton : MonoBehaviour
         startParentImageScale = parentImage.localScale;
     }
 
+    private void Start()
+    {
+        hasFunctionTriggered = false;
+    }
+
     // Update is called once per frame
     void Update()
     {
-        fillImage.fillAmount += ((button.IsPressed() && !hasFunctionTriggered) ? 
+        UpdateFillAmount();
+    }
+
+    private void UpdateFillAmount() 
+    {
+        fillImage.fillAmount += ((button.IsPressed() && !hasFunctionTriggered) ?
             fillAmountSpeed * Time.deltaTime : (-fillAmountCooldownSpeed) * Time.deltaTime);
 
         parentImage.localScale = Vector2.Lerp(startParentImageScale, targetParentImageScale, fillImage.fillAmount * fillImage.fillAmount);
