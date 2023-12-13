@@ -36,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
     {
         // Move in the camera direction
         moveDirection = moveInput.x * cam.right + moveInput.y * cam.forward;
-        rb.AddForce(moveDirection * speed, ForceMode.Force);
+        rb.AddForce(new Vector3(moveDirection.x, 0, moveDirection.z) * speed, ForceMode.Force);
     }
 
     public void CanPlayerMove(bool state) 
