@@ -16,12 +16,15 @@ public class PlayerMovement : MonoBehaviour
     private float verticalInput;
 
     private Vector3 moveDirection;
+    private Transform cam;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
+
+        cam = Camera.main.transform;
     }
 
     private void FixedUpdate()
@@ -34,11 +37,6 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         GetInput();
-
-        Vector3 inputDir = player.forward * verticalInput + player.right * horizontalInput;
-
-        if (inputDir != Vector3.zero)
-            player.forward = Vector3.Slerp(player.forward, inputDir.normalized, Time.deltaTime * rotationSpeed);
     }
 
     private void GetInput()
@@ -50,8 +48,8 @@ public class PlayerMovement : MonoBehaviour
     private void MovePlayer()
     {
         // calculate movement direction
-        moveDirection = player.forward * verticalInput + player.right * horizontalInput;
-
+        moveDirection = cam.forward * verticalInput + cam.right * horizontalInput;
+        moveDirection = new Vector3(moveDirection.x, 0, moveDirection.z);
 
         rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
     }
