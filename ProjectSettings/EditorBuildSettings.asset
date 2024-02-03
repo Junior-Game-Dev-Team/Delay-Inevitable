@@ -6,12 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Horror Game/Scenes/Levels/TitleScreen.unity
-    guid: 656789551012d6a45b098bb68e4fbfa4
+    path: Assets/Horror Game/Scenes/Prototype_Level.unity
+    guid: 86a11d7ab81481241ab1028962f90d30
   - enabled: 1
-    path: Assets/Horror Game/Scenes/Levels/Apartment_01.unity
-    guid: 97b638820b7decb43931fadb0ad0da1a
-  - enabled: 1
-    path: Assets/Horror Game/Scenes/Levels/Credits.unity
-    guid: 46b4e7b0f8787734eabb6d064585dc92
+    path: Assets/Horror Game/Scenes/Prototype Ending.unity
+    guid: 661909b8470843c4e8ee21f17043049e
   m_configObjects: {}
